@@ -21,9 +21,3 @@ This Job Management Application is a modern web application designed to streamli
 8. **React Hook Form**: For managing form state and validation.
 9. **React Router**: For client-side routing, enabling navigation between different views of the application.
 
-## Installation and Setup
-
-1. **Clone the Repository**:
-   ```sh
-   git clone https://github.com/Sogo28/react-jobs.git
-   cd job-management-app
