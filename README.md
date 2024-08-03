@@ -25,5 +25,5 @@ This Job Management Application is a modern web application designed to streamli
 
 1. **Clone the Repository**:
    ```sh
-   git clone https://github.com/your-username/job-management-app.git
+   git clone https://github.com/Sogo28/react-jobs.git
    cd job-management-app
