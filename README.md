@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+# Job Management Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This Job Management Application is a modern web application designed to streamline the process of managing job listings. Built with the latest web technologies, it provides a robust, scalable, and user-friendly platform for creating, updating, viewing, and deleting job listings.
 
-Currently, two official plugins are available:
+## Key Features
+- **Create, Read, Update, Delete (CRUD) Operations**: Manage job listings with ease.
+- **Optimistic Updates**: Instant feedback on job listing updates using React Query.
+- **Validation**: Robust form validation using Zod.
+- **State Management**: Efficient state management with Zustand.
+- **Responsive Design**: A responsive layout that works seamlessly across various devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+1. **React**: A JavaScript library for building user interfaces.
+2. **TypeScript**: A statically typed superset of JavaScript that enhances code quality and maintainability.
+3. **React Query**: For managing server state, providing caching, synchronization, and more for data fetching.
+4. **Zod**: For schema declaration and validation, ensuring data consistency and integrity.
+5. **Zustand**: A small, fast, and scalable state management solution.
+6. **Axios**: For making HTTP requests to the backend API.
+7. **Tailwind CSS**: A utility-first CSS framework for quickly styling the application.
+8. **React Hook Form**: For managing form state and validation.
+9. **React Router**: For client-side routing, enabling navigation between different views of the application.
 
-## Expanding the ESLint configuration
+## Installation and Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/your-username/job-management-app.git
+   cd job-management-app
