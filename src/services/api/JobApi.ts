@@ -1,7 +1,7 @@
 import axios from "axios";
 import { JobsSchema, JobSchema, Jobtype } from "../../schemas/JobSchemas";
 import { GetJobsfilters } from "../../state/JobStore";
-import { FormFieldType } from "../../schemas/FormFieldsSchemas";
+import { FormFieldSchema, FormFieldType } from "../../schemas/FormFieldsSchemas";
 
 export const fetchJobs = async (query?: GetJobsfilters): Promise<Jobtype[]> => {
 
@@ -37,8 +37,6 @@ export const fetchJobById = async (id: string): Promise<Jobtype> => {
 
 }
 
-const CreateJob = JobSchema.omit({ id: true });
-
 export const createJob = async (job: FormFieldType) => {
 
   const config = {
@@ -50,7 +48,7 @@ export const createJob = async (job: FormFieldType) => {
     const response = await axios.post(`/api/jobs`, job, config);
     const newJob = response.data;
 
-    const validateJob = CreateJob.safeParse(newJob);
+    const validateJob = FormFieldSchema.safeParse(newJob);
     if (!validateJob.success) {
       console.error("Zod Validation Error ", validateJob.error.errors)
       return
