@@ -1,7 +1,7 @@
 import JobCard from "./JobCard"
 // import { useJobStore } from "../state/JobStore"
 import JobListingSkeleton from "./skeletons/JobListingSkeleton";
-import useJobs from "../hooks/useJobs";
+import useJobs from "../hooks/jobs/useJobs";
 
 
 export default function JobListing({ isHome = false }) {

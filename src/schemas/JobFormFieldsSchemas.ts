@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const FormFieldSchema = z.object({
+export const JobFormFieldSchema = z.object({
   title: z.string().min(4, "The title must contain at least 4 character(s)"),
   type: z.enum(["Full-Time", "Remote", "Part-Time", "Internship"]),
   description: z.string().min(15),
@@ -15,4 +15,4 @@ export const FormFieldSchema = z.object({
   })
 })
 
-export type FormFieldType = z.infer<typeof FormFieldSchema>;
+export type JobFormFieldType = z.infer<typeof JobFormFieldSchema>;

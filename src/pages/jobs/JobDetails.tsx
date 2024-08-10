@@ -1,7 +1,7 @@
 import { NavLink, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import useJob from "../../hooks/useJob";
-import useDeleteJob from "../../hooks/useDeleteJob";
+import useJob from "../../hooks/jobs/useJob";
+import useDeleteJob from "../../hooks/jobs/useDeleteJob";
 import JobDetailsSkeleton from "../../components/skeletons/JobDetailsSkeleton";
 import NotFound from "../NotFound";
 import { toast } from "react-toastify";
@@ -61,7 +61,7 @@ export default function JobDetails() {
             <p>{job?.salary} / Year</p>
           </div>
         </div>
-        <div className="flex flex-col lg:w-1/4 gap-6">
+        {/* <div className="flex flex-col lg:w-1/4 gap-6">
           <div className="bg-white p-8 flex flex-col gap-4 shadow-lg">
             <p className="font-bold text-xl">Company Info</p>
             <p className="text-2xl font-medium">{job?.company.name} </p>
@@ -97,7 +97,7 @@ export default function JobDetails() {
               Delete Job
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

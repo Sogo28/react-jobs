@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useCreateJob } from "../../hooks/useCreateJob";
-import { FormFieldSchema, FormFieldType } from "../../schemas/FormFieldsSchemas";
+import { useCreateJob } from "../../hooks/jobs/useCreateJob";
+import { JobFormFieldSchema, JobFormFieldType } from "../../schemas/JobFormFieldsSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
@@ -17,13 +17,13 @@ export default function AddJob() {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<FormFieldType>(
+  } = useForm<JobFormFieldType>(
     {
-      resolver: zodResolver(FormFieldSchema)
+      resolver: zodResolver(JobFormFieldSchema)
     }
   );
 
-  const onSubmit: SubmitHandler<FormFieldType> = (data) => {
+  const onSubmit: SubmitHandler<JobFormFieldType> = (data) => {
     try {
       createJobMutation.mutate(data, {
         onSuccess: () => {

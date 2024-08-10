@@ -1,11 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import { FormFieldSchema, FormFieldType } from "../../schemas/FormFieldsSchemas";
+import { JobFormFieldSchema, JobFormFieldType } from "../../schemas/JobFormFieldsSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { useParams } from "react-router-dom";
-import useJob from "../../hooks/useJob";
-import useUpdateJob from "../../hooks/useUpdateJob";
+import useJob from "../../hooks/jobs/useJob";
+import useUpdateJob from "../../hooks/jobs/useUpdateJob";
 import { toast } from "react-toastify";
 
 export default function EditJob() {
@@ -23,7 +23,7 @@ export default function EditJob() {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<FormFieldType>(
+  } = useForm<JobFormFieldType>(
     {
       defaultValues: {
         company: job?.company,
@@ -33,12 +33,12 @@ export default function EditJob() {
         salary: job?.salary,
         title: job?.title
       },
-      resolver: zodResolver(FormFieldSchema)
+      resolver: zodResolver(JobFormFieldSchema)
     },
 
   );
 
-  const onSubmit: SubmitHandler<FormFieldType> = (data) => {
+  const onSubmit: SubmitHandler<JobFormFieldType> = (data) => {
     try {
       updateJobMutation.mutate({ job: data, id: id as string }, {
         onSuccess: () => {

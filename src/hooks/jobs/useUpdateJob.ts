@@ -1,16 +1,16 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { editJob } from "../services/api/JobApi";
-import { Jobtype } from "../schemas/JobSchemas";
-import { FormFieldType } from "../schemas/FormFieldsSchemas";
+import { editJob } from "../../services/api/JobApi";
+import { Jobtype } from "../../schemas/JobSchemas";
+import { JobFormFieldType } from "../../schemas/JobFormFieldsSchemas";
 
 export default function useUpdateJob() {
 
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ job, id }: { job: FormFieldType, id: string }) => editJob({ job, id }),
+    mutationFn: ({ job, id }: { job: JobFormFieldType, id: string }) => editJob({ job, id }),
 
-    onMutate: async ({ job, id }: { job: FormFieldType, id: string }) => {
+    onMutate: async ({ job, id }: { job: JobFormFieldType, id: string }) => {
 
       await queryClient.cancelQueries({ queryKey: ['job', id], exact: true });
 

@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { createJob } from "../services/api/JobApi";
+import { createJob } from "../../services/api/JobApi";
 
 export const useCreateJob = () => {
 

@@ -1,5 +1,6 @@
 
 /** @type {import('tailwindcss').Config} */
+import daisyui from 'daisyui';
 
 export default {
   content: [
@@ -12,5 +13,10 @@ export default {
       sans: ['Josefin Sans Variable'],
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: []
+  },
+  plugins: [
+    daisyui,
+  ]
 }

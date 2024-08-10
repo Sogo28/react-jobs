@@ -1,6 +1,6 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { deleteJob } from "../services/api/JobApi";
-import { Jobtype } from "../schemas/JobSchemas";
+import { deleteJob } from "../../services/api/JobApi";
+import { Jobtype } from "../../schemas/JobSchemas";
 
 export default function useDeleteJob() {
 
