@@ -7,5 +7,5 @@ import '@fontsource-variable/josefin-sans';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 )

@@ -8,6 +8,7 @@ import clsx from "clsx";
 export default function Login() {
 
   const setToken = useAuthStore((state) => state.setToken);
+  const setUser = useAuthStore((state) => state.setUser);
   const loginMutation = useLogin();
   const navigate = useNavigate();
 
@@ -25,8 +26,11 @@ export default function Login() {
   const onSubmit: SubmitHandler<LoginFormFieldsType> = (data) => {
     loginMutation.mutate(data, {
       onSuccess: (data) => {
-        setToken(data);
-        navigate('/test');
+        setToken(data.token);
+        // Store the access token in local storage
+        localStorage.setItem("accessToken", data.token);
+        setUser(data.user);
+        navigate('/employer/home');
       },
       onError: (errors) => {
         setError("root", {

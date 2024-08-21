@@ -1,18 +1,23 @@
 import { create } from "zustand";
-import { UserType } from "../schemas/UserSchema";
 
 type AuthStore = {
   token: string;
-  user: UserType | undefined;
-  setToken: (token: string) => void
+  user: { id: string } | undefined;
+  isAuthenticated: boolean;
+  setAuth: (isAuthenticated: boolean) => void;
+  setToken: (token: string) => void,
+  setUser: (user: { id: string }) => void,
+  clearUser: () => void,
 }
 
 export const useAuthStore = create<AuthStore>((set) =>
 ({
   token: "",
   user: undefined,
-
+  isAuthenticated: false,
+  setAuth: (isAuthenticated) => set({ isAuthenticated }),
   setToken: (token: string) => set((state) => ({ token })),
-  setUser: (user: UserType) => set((state) => ({ user }))
+  setUser: (user: { id: string }) => set((state) => ({ user })),
+  clearUser: () => set((state) => ({ user: undefined }))
 })
 )

@@ -1,4 +1,4 @@
-import { Route, RouterProvider, createRoutesFromElements, createBrowserRouter, Routes } from "react-router-dom";
+import { Route, RouterProvider, createRoutesFromElements, createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Login from "../pages/auth/Login";
@@ -10,6 +10,7 @@ import EditJob from "../pages/jobs/EditJob";
 import NotFound from "../pages/NotFound";
 import TestingZone from "../pages/dev/TestingZone";
 import RequireAuthLayout from "../layouts/RequireAuthLayout";
+import { Home as EmployerHome } from "../pages/employers/Home";
 
 export default function Router() {
   const router = createBrowserRouter(
@@ -27,14 +28,16 @@ export default function Router() {
           <Route path="/jobs" element={<Jobs />}></Route>
           <Route path="/jobs/:id" element={<JobDetails />}></Route>
 
-          {/* Protected routes */}
-          <Route element={<RequireAuthLayout />}>
-            <Route path="/add-job" element={<AddJob />}></Route>
-            <Route path="/jobs/:id/edit" element={<EditJob />}></Route>
-          </Route>
-
-          <Route path="*" element={<NotFound />} />
         </Route>
+
+        {/* Protected routes */}
+        <Route element={<RequireAuthLayout />}>
+          <Route path="/add-job" element={<AddJob />}></Route>
+          <Route path="/jobs/:id/edit" element={<EditJob />}></Route>
+          <Route path="/employer/home" element={<EmployerHome />}></Route>
+          <Route path="/employer/*" element={<NotFound />}></Route>
+        </Route>
+
         <Route path="/test" element={<TestingZone />}></Route>
       </Route>
 

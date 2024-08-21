@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosInstance from "./AxiosConfig";
 import { JobsSchema, JobSchema, Jobtype } from "../../schemas/JobSchemas";
 import { GetJobsfilters } from "../../state/JobStore";
 import { JobFormFieldSchema, JobFormFieldType } from "../../schemas/JobFormFieldsSchemas";
@@ -18,6 +19,14 @@ export const fetchJobs = async (query?: GetJobsfilters): Promise<Jobtype[]> => {
 
   return jobs;
 
+}
+
+export const fetchJobsByEmployer = async (employerId: string): Promise<Jobtype[]> => {
+
+  const response = await axiosInstance.get(`/api/employers/${employerId}/job-offers`);
+  const jobs: Jobtype[] = response.data;
+
+  return jobs;
 }
 
 export const fetchJobById = async (id: string): Promise<Jobtype> => {

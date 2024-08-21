@@ -5,10 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { toast } from "react-toastify";
+import { useAuthStore } from "../../state/AuthStore";
+import Navbar from "../../components/employersUI/NavBar";
 
 export default function AddJob() {
 
   const navigate = useNavigate();
+  const user = useAuthStore((state) => state.user)
 
   const createJobMutation = useCreateJob();
 
@@ -24,8 +27,14 @@ export default function AddJob() {
   );
 
   const onSubmit: SubmitHandler<JobFormFieldType> = (data) => {
+
+    const jobDataWithUserId = {
+      ...data,
+      userId: user?.id // Add the userId to the job data
+    };
+
     try {
-      createJobMutation.mutate(data, {
+      createJobMutation.mutate(jobDataWithUserId, {
         onSuccess: () => {
           toast("Job have been sucessfully added");
           navigate('/jobs');
@@ -40,6 +49,7 @@ export default function AddJob() {
 
   return (
     <section className="">
+      <Navbar />
       <div className="container m-auto max-w-2xl py-24">
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -142,80 +152,6 @@ export default function AddJob() {
 
               />
               {errors.location && (<div className="text-red-500">{errors.location.message}</div>)}
-            </div>
-
-            <h3 className="text-2xl mb-5">Company Info</h3>
-
-            <div className="mb-4">
-              <label
-                htmlFor="company.name"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Company Name
-              </label>
-              <input
-                {...register("company.name")}
-                type="text"
-                id="company"
-                name="company.name"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Company Name"
-              />
-              {errors.company?.name && (<div className="text-red-500">{errors.company.name.message}</div>)}
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="company.description"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Company Description
-              </label>
-              <textarea
-                {...register("company.description")}
-                id="company.description"
-                name="company.description"
-                className="border rounded w-full py-2 px-3"
-                rows={4}
-                placeholder="What does your company do?"
-              ></textarea>
-              {errors.company?.description && (<div className="text-red-500">{errors.company.description.message}</div>)}
-            </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="company.contactEmail"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Contact Email
-              </label>
-              <input
-                {...register("company.contactEmail")}
-                type="text"
-                id="company.contactEmail"
-                name="company.contactEmail"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Email address for applicants"
-
-              />
-              {errors.company?.contactEmail && (<div className="text-red-500">{errors.company.contactEmail.message}</div>)}
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="company.contactPhone"
-                className="block text-gray-700 font-bold mb-2"
-              >
-                Contact Phone
-              </label>
-              <input
-                {...register("company.contactPhone")}
-                type="tel"
-                id="company.contactPhone"
-                name="company.contactPhone"
-                className="border rounded w-full py-2 px-3"
-                placeholder="Optional phone for applicants"
-              />
-              {errors.company?.contactPhone && (<div className="text-red-500">{errors.company.contactPhone.message}</div>)}
             </div>
 
             <div>

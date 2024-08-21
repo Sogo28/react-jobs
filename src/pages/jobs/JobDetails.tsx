@@ -11,7 +11,7 @@ export default function JobDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data: job, isLoading } = useJob(id as string);
+  const { data: job, isLoading, error } = useJob(id as string);
   const deleteJobMutation = useDeleteJob();
 
   const onDeleteJobClick = async (id: string) => {
