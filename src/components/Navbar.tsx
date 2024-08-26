@@ -1,8 +1,7 @@
 import logo_dark from "../assets/logo_dark.svg";
 import { NavLink } from "react-router-dom";
 import { useAuthStore } from "../state/AuthStore";
-import { CgProfile } from "react-icons/cg";
-import { IoIosArrowDown } from "react-icons/io";
+import { Navbar as EmployerNavBar } from "./employersUI/NavBar";
 
 export default function Navbar() {
 
@@ -29,16 +28,7 @@ export default function Navbar() {
       <img src={logo_dark} alt="react logo" height={40} width={40} />
       {
         user
-          ? (
-            <details className="dropdown ">
-              <summary className="btn m-1 border-none text-white"> <CgProfile className="h-7 w-7" /> <IoIosArrowDown /></summary>
-              <ul className="menu dropdown-content rounded-box z-[1] w-52 p-2 shadow bg-white">
-                <li><NavLink to="/logout">
-                  Logout
-                </NavLink></li>
-              </ul>
-            </details>
-          )
+          ? <EmployerNavBar />
           : (<div className="flex flex-row justify-center items-center gap-8">
             {navLinks.map((current) => (
               <NavLink to={current.path} className={({ isActive }) => (isActive ? "bg-[#62cff4] py-1 px-2 rounded-xl font-medium text-lg" : "text-white font-medium text-lg")} key={current.title}>

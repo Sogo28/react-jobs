@@ -27,14 +27,18 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
+    console.log(error.response);
     // Handle specific error scenarios
     const originalRequest = error.config;
 
     // Check if the error is due to an expired access token
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      console.log("Attempting to refresh token...");
+
+      // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       try {
+        console.log("Attempting to refresh token...");
         // Attempt to refresh the token
         const response = await axios.post('/api/auth/refresh-token', {}, { withCredentials: true });
 

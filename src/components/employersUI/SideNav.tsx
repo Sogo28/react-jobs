@@ -1,4 +1,3 @@
-import logo_dark from "../../assets/logo_dark.svg";
 import { NavLink } from "react-router-dom";
 
 export default function SideNav() {
@@ -6,7 +5,6 @@ export default function SideNav() {
     <>
       <div className="h-full w-80 bg-[#1d2027] flex flex-col gap-8 p-4 relative ">
         <div className="flex flex-row gap-2">
-          <img src={logo_dark} alt="react logo" height={40} width={40} />
           <div className="flex justify-center items-center text-lg text-white">React Employer</div>
         </div>
         <div className="flex flex-col gap-4">

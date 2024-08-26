@@ -3,13 +3,14 @@ import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
 import { LoginFormFieldsType, LoginFormFieldsSchema } from "../../schemas/LoginFormFieldsSchema";
 import useLogin from "../../hooks/auth/useLogin";
 import { useAuthStore } from "../../state/AuthStore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import clsx from "clsx";
 export default function Login() {
 
   const setToken = useAuthStore((state) => state.setToken);
   const setUser = useAuthStore((state) => state.setUser);
   const loginMutation = useLogin();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const {
@@ -22,6 +23,7 @@ export default function Login() {
       resolver: zodResolver(LoginFormFieldsSchema)
     }
   );
+  const from = location.state?.from?.pathname || "/employer/home";
 
   const onSubmit: SubmitHandler<LoginFormFieldsType> = (data) => {
     loginMutation.mutate(data, {
@@ -30,7 +32,7 @@ export default function Login() {
         // Store the access token in local storage
         localStorage.setItem("accessToken", data.token);
         setUser(data.user);
-        navigate('/employer/home');
+        navigate(from, { replace: true });
       },
       onError: (errors) => {
         setError("root", {

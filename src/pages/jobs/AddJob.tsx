@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../../state/AuthStore";
-import Navbar from "../../components/employersUI/NavBar";
+import { Navbar } from "../../components/employersUI/NavBar";
 
 export default function AddJob() {
 
@@ -37,7 +37,7 @@ export default function AddJob() {
       createJobMutation.mutate(jobDataWithUserId, {
         onSuccess: () => {
           toast("Job have been sucessfully added");
-          navigate('/jobs');
+          navigate('/employer/home');
         }
       })
     } catch (error) {
@@ -67,7 +67,7 @@ export default function AddJob() {
                 id="type"
                 name="type"
                 className="border rounded w-full py-2 px-3"
-
+                defaultValue={"Full-Time"}
 
               >
                 <option value="Full-Time">Full-Time</option>
@@ -92,6 +92,7 @@ export default function AddJob() {
               />
               {errors.title?.message && (<div className="text-red-500">{errors.title?.message}</div>)}
             </div>
+
             <div className="mb-4">
               <label
                 htmlFor="description"
@@ -122,6 +123,7 @@ export default function AddJob() {
                 id="salary"
                 name="salary"
                 className="border rounded w-full py-2 px-3"
+                defaultValue={"Under $50K"}
               >
                 <option value="Under $50K">Under $50K</option>
                 <option value="$50K - 60K">$50K - $60K</option>

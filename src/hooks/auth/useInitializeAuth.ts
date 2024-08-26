@@ -9,16 +9,20 @@ const useInitializeAuth = () => {
   useEffect(() => {
     const initializeAuth = async () => {
       const token = localStorage.getItem("accessToken");
-      if (token) {
-        try {
-          const response = await axiosInstance.get("/api/auth/check-auth");
-          setAuth(true);
-          setUser(response.data.user);
-        } catch (error) {
-          setAuth(false);
-          console.error("Error initializing authentication:", error);
-        }
+      // Si pas de token, ne pas tenter d'authentification
+      if (!token) {
+        setAuth(false);
+        return;
       }
+      try {
+        const response = await axiosInstance.get("/api/auth/check-auth");
+        setAuth(true);
+        setUser(response.data.user);
+      } catch (error: any) {
+        setAuth(false);
+        localStorage.removeItem("accessToken");
+      }
+
     };
 
     initializeAuth();

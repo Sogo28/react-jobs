@@ -11,6 +11,8 @@ import NotFound from "../pages/NotFound";
 import TestingZone from "../pages/dev/TestingZone";
 import RequireAuthLayout from "../layouts/RequireAuthLayout";
 import { Home as EmployerHome } from "../pages/employers/Home";
+import CompanyDetails from "../pages/employers/CompanyDetails";
+import AddCompany from "../pages/employers/AddCompany";
 
 export default function Router() {
   const router = createBrowserRouter(
@@ -35,6 +37,8 @@ export default function Router() {
           <Route path="/add-job" element={<AddJob />}></Route>
           <Route path="/jobs/:id/edit" element={<EditJob />}></Route>
           <Route path="/employer/home" element={<EmployerHome />}></Route>
+          <Route path="/employer/company" element={<CompanyDetails />}></Route>
+          <Route path="/add-company" element={<AddCompany />}></Route>
           <Route path="/employer/*" element={<NotFound />}></Route>
         </Route>
 

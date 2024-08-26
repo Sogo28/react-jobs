@@ -3,7 +3,7 @@ import { useAuthStore } from "../../state/AuthStore"
 import JobCard from "../../components/JobCard";
 import { NavLink } from "react-router-dom";
 import SideNav from "../../components/employersUI/SideNav";
-import Navbar from "../../components/employersUI/NavBar";
+import { Navbar } from "../../components/employersUI/NavBar";
 import JobCardSkeleton from "../../components/skeletons/JobCardSkeleton";
 
 export function Home() {
@@ -21,10 +21,10 @@ export function Home() {
           <NavLink to="/add-job" className="transition ease-in-out duration-150 rounded-xl px-4 py-2 w-fit bg-[#62cff4] font-medium text-center hover:bg-[#54b4d4] self-end">Post an offer</NavLink>
           {isLoading
             ? <>
-              <JobCardSkeleton />
-              <JobCardSkeleton />
-              <JobCardSkeleton />
-              <JobCardSkeleton />
+              <JobCardSkeleton customClass="w-full" />
+              <JobCardSkeleton customClass="w-full" />
+              <JobCardSkeleton customClass="w-full" />
+              <JobCardSkeleton customClass="w-full" />
             </>
             : !jobs?.length
               ? <h1 className="text-2xl text-white ">No offers</h1>
