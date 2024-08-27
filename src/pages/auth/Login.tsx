@@ -9,9 +9,9 @@ export default function Login() {
 
   const setToken = useAuthStore((state) => state.setToken);
   const setUser = useAuthStore((state) => state.setUser);
+  const navigate = useNavigate();
   const loginMutation = useLogin();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const {
     register,
@@ -78,6 +78,9 @@ export default function Login() {
               : "bg-[#62cff4] font-medium text-center hover:bg-[#54b4d4]"
           )} disabled={loginMutation.isPending} />
           {errors.root && (<div className="text-red-500">{errors.root.message}</div>)}
+        </fieldset>
+        <fieldset className="mt-2">
+          <p className="text-center">No account? <a href="/sign-in" className="text-[#62cff4] underline">create</a> on right now !</p>
         </fieldset>
       </form>
 

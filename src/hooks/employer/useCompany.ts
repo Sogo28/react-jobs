@@ -9,7 +9,6 @@ export default function useCompany(employerId: string) {
         const company = await fetchCompanyByEmployer(employerId)
         return company;
       } catch (error) {
-        console.log(error)
         return null;
       }
     },

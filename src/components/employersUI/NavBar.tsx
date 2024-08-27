@@ -1,15 +1,20 @@
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import useLogout from "../../hooks/auth/useLogout";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo_dark from "../../assets/logo_dark.svg";
+import { useAuthStore } from "../../state/AuthStore";
 
 export function Navbar() {
 
   const logoutMutation = useLogout();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logoutMutation.mutate()
+    navigate("/");
+    localStorage.removeItem("accessToken");
+    useAuthStore.getState().clearUser();
   }
 
   return (

@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    console.log(error.response);
+
     // Handle specific error scenarios
     const originalRequest = error.config;
 
@@ -35,8 +35,6 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 3000));
       try {
         console.log("Attempting to refresh token...");
         // Attempt to refresh the token

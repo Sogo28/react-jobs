@@ -23,16 +23,15 @@ export const login = async (data: LoginFormFieldsType): Promise<{ token: string,
 
 export const logout = async () => {
 
-  // Clear the access token from localStorage
-  localStorage.removeItem("accessToken");
-
-  // Clear the authentication state in Zustand (or your state management)
-  useAuthStore.getState().clearUser();
-
   try {
-    await axiosInstance.post('/api/auth/logout'); // Assuming you have an endpoint to handle this
+    axiosInstance.post('/api/auth/logout');
+
+    console.log("logged out!");// Assuming you have an endpoint to handle this
+
   } catch (error) {
     console.error("Logout error:", error);
   }
+
+
 
 }
